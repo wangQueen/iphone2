@@ -1,0 +1,91 @@
+@smscreen:768px;
+@mdscreen:1000px;
+@lgscreen:1200px;
+//栅格数量
+@cols:12;
+//列间距
+@padding:15px;
+
+
+.pad(@padding){
+  padding-left: @padding;
+  padding-right: @padding;
+}
+.clf:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.container{
+  &{
+    height:auto;
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    .pad(@padding);
+  }
+  &-fluid{
+    height:auto;
+    .pad(@padding);
+  }
+  & .row,&-fluid .row{
+    height:auto;
+    display: block;
+    margin-left: -@padding;
+    margin-right: -@padding;
+  }
+  & .row:after,&-fluid .row:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.grid(@type,@i:0) when (@i<=@cols){
+  .col-@{type}-@{i}{
+    display: block;
+    float: left;
+    width:100%/@cols*@i;
+    .pad(@padding);
+  }
+  .grid(@type,@i+1)
+}
+/*手机端的栅格*/
+.grid(xs);
+
+.g(@width,@name){
+  @media screen and (min-width:@width){
+    .container{
+      width:@width - @padding * 2;
+    }
+    .grid(@name)
+  }
+
+}
+/*平板的栅格*/
+.g(@smscreen,sm);
+/*小屏pc的栅格*/
+.g(@mdscreen,md);
+/*大屏pc的栅格*/
+.g(@lgscreen,lg);
+
+@media screen and (max-width: @smscreen){
+  .hidden-xs{
+    display: none !important;
+  }
+}
+@media screen and (min-width: @smscreen) and (max-width: @mdscreen){
+  .hidden-sm{
+    display: none !important;
+  }
+}
+@media screen and (min-width: @mdscreen) and (max-width: @lgscreen){
+  .hidden-md{
+    display: none !important;
+  }
+}
+@media screen and (min-width: @lgscreen){
+  .hidden-lg{
+    display: none !important;
+  }
+}
