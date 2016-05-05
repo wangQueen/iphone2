@@ -238,3 +238,26 @@ a {
     display: none;
   }
 }
+.yi,.er{
+  width: 15px;
+  height: 2px;
+  background: #fff;
+  margin-bottom: 5px;
+  transition:all 0.5s;
+}
+.btactive .yi{
+  animation:move 0.5s linear forwards; 
+}
+.btactive .er{
+   animation:move1 0.5s linear forwards;
+}
+@keyframes move{
+    100%{
+      transform:rotate(45deg) translateY(5px);
+    }
+  }
+@keyframes move1{
+  100%{
+    transform:rotate(-45deg) translateY(-5px);
+  }
+}

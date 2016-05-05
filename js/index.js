@@ -3,9 +3,11 @@ $(function(){
     var f=true;
     $('.bt').click(function(){
         if(f){
-            $('.max-nav').animate({height:h-44},function(){f=false})
+            $('.max-nav').animate({height:h-44},function(){f=false});
+            $('.bt').addClass("btactive")
         }else{
             $('.max-nav').animate({height:'0'},function(){f=true})
+            $('.bt').removeClass("btactive")
         }
 
     });
